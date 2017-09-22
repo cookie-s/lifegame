@@ -29,14 +29,14 @@ image: image/EFI/BOOT/BOOTX64.EFI
 	dd if=/dev/zero of=image.img bs=1M count=200
 	echo "$$GDISK_COMMANDS" | gdisk image.img
 	sudo modprobe loop
-	sudo losetup loop62 image.img
-	sudo kpartx -av /dev/loop62
-	sudo mkfs.vfat -F32 /dev/mapper/loop62p1
-	sudo mount /dev/mapper/loop62p1 mount
+	sudo losetup loop61 image.img
+	sudo kpartx -av /dev/loop61
+	sudo mkfs.vfat -F32 /dev/mapper/loop61p1
+	sudo mount /dev/mapper/loop61p1 mount
 	sudo cp -r image/* mount
-	sudo umount /dev/mapper/loop62p1
-	sudo kpartx -dv /dev/loop62
-	sudo losetup -d /dev/loop62
+	sudo umount /dev/mapper/loop61p1
+	sudo kpartx -dv /dev/loop61
+	sudo losetup -d /dev/loop61
 	qemu-img convert image.img -O vmdk image.vmdk
 	cp -f image.vmdk /archshare
 
